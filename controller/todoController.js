@@ -46,3 +46,15 @@ module.exports.getAllTasks = async (req, res, next) => {
   }
   res.json({ data: tasks });
 };
+
+// delete task
+module.exports.deleteTask = async (req, res, next) => {
+  const tasks = await Task.findByIdAndDelete(req.params.id);
+
+  if (tasks) {
+    res.json({ status: true });
+  } else {
+    next(ApiError.notFound("item does not exist"));
+    return;
+  }
+};
