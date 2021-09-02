@@ -35,7 +35,7 @@ module.exports.completeTask = async (req, res, next) => {
 // get all tasks
 module.exports.getAllTasks = async (req, res, next) => {
   let query =
-    req.query.filter == "remaining"
+    req.query.filter == "pending"
       ? { completed: false }
       : req.query.filter == "completed"
       ? { completed: true }
@@ -52,7 +52,7 @@ module.exports.deleteTask = async (req, res, next) => {
   const tasks = await Task.findByIdAndDelete(req.params.id);
 
   if (tasks) {
-    res.json({ status: true });
+    res.json({ status: true, data: tasks });
   } else {
     next(ApiError.notFound("item does not exist"));
     return;

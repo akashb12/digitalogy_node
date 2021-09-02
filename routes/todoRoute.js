@@ -7,7 +7,7 @@ const {
   deleteTask,
 } = require("../controller/todoController");
 const catchAsync = require("../errorHandling/catchAsync");
-router.get("/getTasks", catchAsync(getAllTasks));
+router.get("/getTodos", catchAsync(getAllTasks));
 router.post("/addTodo", catchAsync(createTask));
 router.patch("/completeTodo/:id", catchAsync(completeTask));
 router.delete("/deleteTodo/:id", catchAsync(deleteTask));
